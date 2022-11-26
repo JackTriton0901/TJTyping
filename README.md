@@ -2,7 +2,9 @@
 Typing training software created using tkinter
 
 ## Q. How to create a wordlist?
-A. Make a document without file extension, write all words you want using alphabets, numbers and symbols.
+A. Make a document without file extension, write all words you want using alphabets, numbers and symbols. Put it inside a file with Info.ini which contains informations of the wordlists. Put the file into the wordlist file.
+
+Example:TJTyping/wordlist/English
 
 ## Q. How to play?
 A. Open TJTyping.py on Python IDLE and run it.
@@ -12,8 +14,6 @@ A. Open TJTyping.py on Python IDLE and run it.
  | Name : Your username
 
  | List : The list you use
-
- | Encode : Encoding of the list
 
  | Nocap : Disallow capitalized words [True/False]
 
