@@ -6,7 +6,7 @@ import datetime
 import configparser
 from misc.wordloader import wordloader
 
-version = "1.0.0"
+version = "1.1.0"
 config = configparser.ConfigParser()
 config.read('config.ini', encoding='utf-8')
 sett = config["Setting"]
@@ -45,9 +45,7 @@ record = 0
 logged = False
 unbooted = True
 
-name = sett["Name"]
 wordlist = sett["List"]
-encode = sett["Encode"]
 nocap = config.getboolean("Setting", "NoCap")
 if nocap is True:
     surd = "NoCap "
@@ -66,7 +64,10 @@ if ranged != [0,0]:
 else:
     reit = ""
     
-words = wordloader(wordlist, encode, nocap, ranged)
+loaded = wordloader(wordlist, nocap, ranged)
+name = sett["Name"]
+wordname =loaded[0]
+words = loaded[1]
 
 root = tk.Tk()
 root.title("TJTyping")
@@ -88,7 +89,7 @@ textMissType = canvas.create_text(
 textName = canvas.create_text(
     5, 65, text=f"Name :{name}", anchor="nw", font=('Courier', 15), fill="#333")
 textWordlist = tk.Label(
-    text = f"WordList :{wordlist} {surd}{reit}", font=('Consolas', 20), justify='center', background="#fff")
+    text = f"WordList :{wordname} {surd}{reit}", font=('Consolas', 20), justify='center', background="#fff")
 
 def tick(count: int):
     global remsec
@@ -132,7 +133,7 @@ def Unbooter():
     mistype = 0
     record = 0
     word = "Press Escape Key\nto start game"
-    textWordlist["text"] = f"WordList :{wordlist} {surd}{reit}"
+    textWordlist["text"] = f"WordList :{wordname} {surd}{reit}"
     word_get = "READY?"
     word_show = word
     thread.stop()
@@ -214,7 +215,7 @@ def render_unboot():
     textTypingTarget["text"]=f"READY?"
     textTypingTarget["fg"]="#000"
     textTypingShow["text"]="Press Escape Key\nto start game"
-    textWordlist["text"] = f"WordList :{wordlist} {surd}{reit}"
+    textWordlist["text"] = f"WordList :{wordname} {surd}{reit}"
     canvas.itemconfigure(textScore, text=f"Scored:{score}")
     canvas.itemconfigure(textSec, text=f"Time :{remsec - 1}")
     canvas.itemconfigure(textMissType, text=f"Miss :{mistype}")
@@ -228,7 +229,7 @@ def loop():
                 with open("score.log", mode="a+") as log:
                     log.write(str(datetime.datetime.now()))
                     log.write(f"\nName: {name}")
-                    log.write(f"\nWordList: {wordlist} {surd}{reit}")
+                    log.write(f"\nWordList: {wordname} {surd}{reit}")
                     log.write(f"\nScore: {score} + {record}")
                     log.write(f"\nMissed: {mistype}\n\n")
                 logged = True
