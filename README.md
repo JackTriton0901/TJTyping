@@ -1,6 +1,7 @@
 # TJTyping
 Typing training software created using tkinter
 
+## Upload your wordlist on Pull requests with "!Add-on!" on the name
 ## Q. How to create a wordlist?
 A. Make a document without file extension, write all words you want using alphabets, numbers and symbols. Put it inside a file with Info.ini which contains informations of the wordlists. Put the file into the wordlist file.
 
