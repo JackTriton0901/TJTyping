@@ -6,7 +6,7 @@ import datetime
 import configparser
 from misc.wordloader import wordloader
 
-version = "1.1.0"
+version = "1.2.0"
 config = configparser.ConfigParser()
 config.read('config.ini', encoding='utf-8')
 sett = config["Setting"]
